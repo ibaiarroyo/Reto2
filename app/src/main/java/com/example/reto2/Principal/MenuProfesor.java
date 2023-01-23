@@ -1,8 +1,10 @@
-package com.example.reto2;
+package com.example.reto2.Principal;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
+import com.example.reto2.R;
 
 public class MenuProfesor extends AppCompatActivity {
 
