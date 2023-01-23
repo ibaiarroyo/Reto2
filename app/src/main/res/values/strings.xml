@@ -21,4 +21,6 @@
     <string name="RepContraNu">Repite tu nueva contraseña nueva</string>
     <string name="VerMaterias">Ver Listado de materias</string>
     <string name="comerror">Error de comuncacion</string>
+    <string name="Eliminar_materia">Eliminar materia</string>
+    <string name="error">Error!</string>
 </resources>

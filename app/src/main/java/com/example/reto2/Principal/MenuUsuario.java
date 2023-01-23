@@ -28,8 +28,10 @@ public class MenuUsuario extends AppCompatActivity {
            /* Intent intentAmat = new Intent(MenuUsuario.this, Materias.class);
             startActivity(intentAmat);
 */
-            Intent intentaComunity = new Intent(MenuUsuario.this, Comunity.class);
-            startActivity(intentaComunity);
+            /*Intent intentaComunity = new Intent(MenuUsuario.this, Comunity.class);
+            startActivity(intentaComunity);*/
+            Intent intentaMaterias = new Intent(MenuUsuario.this, Materias.class);
+            startActivity(intentaMaterias);
 
         });
 

@@ -1,8 +1,6 @@
 package com.example.reto2.network;
 
-import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
 
 import com.example.reto2.beans.Materia;
 
