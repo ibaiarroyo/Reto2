@@ -19,8 +19,8 @@ public class CambiarContrasena extends AppCompatActivity {
         Cancelar = findViewById(R.id.buttonCancelarCambioContraseña);
 
         Cancelar.setOnClickListener(view ->{
-            Intent intentCpass = new Intent(CambiarContrasena.this, MenuUsuario.class);
-            startActivity(intentCpass);
+            Intent intentCpas = new Intent(CambiarContrasena.this, MenuUsuario.class);
+            startActivity(intentCpas);
 
         });
     }

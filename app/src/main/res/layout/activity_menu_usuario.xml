@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MenuUsuario">
+    tools:context=".Principal.MenuUsuario">
 
     <TextView
         android:id="@+id/textNombreUsuario"
@@ -34,7 +34,9 @@
         android:id="@+id/buttonEditPass2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Editar contraseña"
+        android:hint="@string/EditPass"
+        android:text=""
+        android:textColorHint="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.546"
@@ -46,7 +48,8 @@
         android:id="@+id/textMateriasUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Materias asistidas"
+        android:hint="@string/MateriasAsistidas"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.121"
@@ -58,7 +61,8 @@
         android:id="@+id/textHorario2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Horario"
+        android:hint="@string/Horario"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.285"
@@ -70,7 +74,8 @@
         android:id="@+id/textNivel2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nivel"
+        android:hint="@string/Nivel"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.457"
@@ -82,7 +87,8 @@
         android:id="@+id/textProfesor2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Profesor"
+        android:hint="@string/Profesor"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.641"
@@ -94,7 +100,8 @@
         android:id="@+id/textLugar2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lugar"
+        android:hint="@string/Lugar"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.784"
@@ -106,7 +113,8 @@
         android:id="@+id/textNombre2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Nombre"
+        android:hint="@string/Nombre"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.1"
@@ -121,9 +129,33 @@
         android:text="Busqueda de clases particulares"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.452"
+        app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.71" />
+        app:layout_constraintVertical_bias="0.688" />
+
+    <TextView
+        android:id="@+id/textNombreMat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.476" />
+
+    <Button
+        android:id="@+id/buttonVerMat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/VerMaterias"
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.83" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

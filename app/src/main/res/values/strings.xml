@@ -1,3 +1,24 @@
 <resources>
     <string name="app_name">Reto2</string>
+    <string name="email">Email</string>
+    <string name="Contraseña">Contraseña</string>
+    <string name="Iniciar">Iniciar sesion</string>
+    <string name="Register">Registrarse</string>
+
+    <string name="EditPass">Editar Contraseña</string>
+    <string name="Nombre">Nombre</string>
+    <string name="Horario">Horario</string>
+    <string name="Nivel">Nivel</string>
+    <string name="Profesor">Profesor</string>
+    <string name="Lugar">Lugar</string>
+    <string name="MateriasAsistidas">Materias asistidas:</string>
+    <string name="Salir">Salir</string>
+    <string name="Email">Email</string>
+    <string name="RContraseña">Repite la contraseña</string>
+    <string name="Cancelar">Cancelar</string>
+    <string name="ContraseñaAc">Contraseña actual</string>
+    <string name="ContraseñaNu">Contraseña nueva</string>
+    <string name="RepContraNu">Repite tu nueva contraseña nueva</string>
+    <string name="VerMaterias">Ver Listado de materias</string>
+    <string name="comerror">Error de comuncacion</string>
 </resources>
