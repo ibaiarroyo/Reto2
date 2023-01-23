@@ -41,7 +41,6 @@ public class MyTableAdapter extends ArrayAdapter<Materia> {
         Toast.makeText(context, "AMIGOO MIOOOO", Toast.LENGTH_SHORT).show();
         ((TextView) view.findViewById(R.id.NomMatTextview)).setText("  "+listadoMateria.get(position).getNombre());
 
-
         return view;
     }
 }

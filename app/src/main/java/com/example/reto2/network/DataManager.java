@@ -21,6 +21,13 @@ public class DataManager extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
 
+    //public static final String TABLE_NAME = "usuarios";
+
+    /*private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" +
+            EMAIL + " TEXT NOT NULL ," +
+            PASSWORD + " TEXT NOT NULL " +
+            ");";*/
+
     private final Context context;
 
     public DataManager(Context context){

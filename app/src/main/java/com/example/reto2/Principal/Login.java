@@ -7,6 +7,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto2.R;
+import com.example.reto2.network.DataManager;
 
 public class Login extends AppCompatActivity {
     public Button botonRegistro;
@@ -16,6 +17,8 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        DataManager dataManager = new DataManager(this);
 
         botonRegistro = findViewById(R.id.botonRegistroL);
         botonLog= findViewById(R.id.botonLogin);

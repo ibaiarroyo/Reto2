@@ -29,7 +29,8 @@ public class Materias extends AppCompatActivity {
 
         });
 
-
+            /*Intent intentaComunity = new Intent(Materias.this, Comunity.class);
+            startActivity(intentaComunity);*/
     }
 
 

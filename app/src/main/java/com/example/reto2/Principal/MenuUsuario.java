@@ -25,10 +25,15 @@ public class MenuUsuario extends AppCompatActivity {
 
         });
         verMat.setOnClickListener(view ->{
-            Intent intentAmat = new Intent(MenuUsuario.this, Materias.class);
+           /* Intent intentAmat = new Intent(MenuUsuario.this, Materias.class);
             startActivity(intentAmat);
+*/
+            Intent intentaComunity = new Intent(MenuUsuario.this, Comunity.class);
+            startActivity(intentaComunity);
 
         });
+
+        //TODO LLAMAR AL COMUNITY
 
     }
 }

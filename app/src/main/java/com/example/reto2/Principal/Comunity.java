@@ -20,7 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 import java.util.ArrayList;
 
 public class Comunity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-    private ArrayList<Materia> listado = new ArrayList<>();
+    //private ArrayList<Materia> listado = new ArrayList<>();
     private ListView listaMaterias;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,14 @@ public class Comunity extends AppCompatActivity implements NavigationView.OnNavi
 
        // listaMaterias = findViewById(R.id.listViewHome);
 
+        //TODO NO ESTAMOS LLAMANDO A ESTE ACTIVITY
+
+        Materia materia = new Materia();
+        materia.setId(1);
+        materia.setNombre("COSA");
+
+        ArrayList<Materia> listado = new ArrayList<>();
+        listado.add(materia);
 
         MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.layout.activity_materias, listado);
         listaMaterias.setAdapter(myTableAdapter);
