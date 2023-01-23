@@ -38,7 +38,7 @@ public class MyTableAdapter extends ArrayAdapter<Materia> {
         View view = layoutInflater.inflate(R.layout.linea_layout, null);
 
        // Toast.makeText(context, "AMIGOO MIOOOO", Toast.LENGTH_SHORT).show();
-        ((TextView) view.findViewById(R.id.textViewNameLinea)).setText(listadoMateria.get(position).getNombre());
+        ((TextView) view.findViewById(R.id.textViewNameLinea)).setText(" "+listadoMateria.get(position).getNombre());
 
         return view;
     }

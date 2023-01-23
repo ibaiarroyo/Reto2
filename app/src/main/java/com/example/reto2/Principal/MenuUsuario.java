@@ -35,7 +35,7 @@ public class MenuUsuario extends AppCompatActivity {
 
         });
 
-        //TODO LLAMAR AL COMUNITY
+
 
     }
 }
