@@ -21,12 +21,16 @@ public class DataManager extends SQLiteOpenHelper {
 
     private static final int DB_VERSION = 1;
 
-    //public static final String TABLE_NAME = "usuarios";
+    public static final String TABLE_NAME = "usuarios";
 
-    /*private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" +
+
+    private static final String EMAIL = "email";
+    private static final String PASSWORD = "password";
+
+    private static final String CREATE_TABLE = "create table " + TABLE_NAME + "(" +
             EMAIL + " TEXT NOT NULL ," +
             PASSWORD + " TEXT NOT NULL " +
-            ");";*/
+            ");";
 
     private final Context context;
 
@@ -39,11 +43,13 @@ public class DataManager extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-
+        sqLiteDatabase.execSQL(CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
-
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+        onCreate(sqLiteDatabase);
     }
+
 }

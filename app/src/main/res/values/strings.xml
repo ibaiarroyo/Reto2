@@ -23,4 +23,5 @@
     <string name="comerror">Error de comuncacion</string>
     <string name="Eliminar_materia">Eliminar materia</string>
     <string name="error">Error!</string>
+    <string name="errorInicioSesion">Error en el Inicio de Sesion</string>
 </resources>
