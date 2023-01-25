@@ -12,16 +12,16 @@ import android.widget.TextView;
 
 
 import com.example.reto2.R;
-import com.example.reto2.beans.Materia;
+import com.example.reto2.beans.Materias;
 
 import java.util.ArrayList;
 
-public class MyTableAdapter extends ArrayAdapter<Materia> {
+public class MyTableAdapter extends ArrayAdapter<Materias> {
 
-    private final ArrayList<Materia> listadoMateria;
+    private final ArrayList<Materias> listadoMateria;
     private final Context context;
 
-    public MyTableAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Materia> listadoMateria) {
+    public MyTableAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Materias> listadoMateria) {
         super(context, resource, listadoMateria);
         this.listadoMateria = listadoMateria;
         this.context = context;
@@ -38,7 +38,7 @@ public class MyTableAdapter extends ArrayAdapter<Materia> {
         View view = layoutInflater.inflate(R.layout.linea_layout, null);
 
        // Toast.makeText(context, "AMIGOO MIOOOO", Toast.LENGTH_SHORT).show();
-        ((TextView) view.findViewById(R.id.textViewNameLinea)).setText(" "+listadoMateria.get(position).getNombre());
+        ((TextView) view.findViewById(R.id.textViewNameLinea)).setText(" "+listadoMateria.get(position).getNombreMateria());
 
         return view;
     }

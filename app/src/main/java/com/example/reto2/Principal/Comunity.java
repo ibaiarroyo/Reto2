@@ -4,22 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.example.reto2.R;
-import com.example.reto2.adapter.MyTableAdapter;
-import com.example.reto2.beans.Materia;
-import com.example.reto2.network.MateriasFacade;
+import com.example.reto2.beans.Materias;
+import com.example.reto2.network.MateriasFacadeGetAll;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;
@@ -39,11 +33,11 @@ public class Comunity extends AppCompatActivity implements NavigationView.OnNavi
 
         //listaMaterias = findViewById(R.id.NomMatTextView);
 
-        Materia materia = new Materia();
+        Materias materia = new Materias();
         materia.setId(1);
         materia.setNombre("COSA");
 
-        ArrayList<Materia> listado = new ArrayList<>();
+        ArrayList<Materias> listado = new ArrayList<>();
         listado.add(materia);
 
 
@@ -51,7 +45,7 @@ public class Comunity extends AppCompatActivity implements NavigationView.OnNavi
         listaMaterias.setAdapter(myTableAdapter);
 */
         if (isConnected()) {
-            MateriasFacade materiasFacade = new MateriasFacade();
+            MateriasFacadeGetAll materiasFacade = new MateriasFacadeGetAll();
             Thread thread = new Thread(materiasFacade);
             try {
                 thread.start();

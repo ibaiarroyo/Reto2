@@ -2,7 +2,7 @@ package com.example.reto2.network;
 
 
 
-import com.example.reto2.beans.Materia;
+import com.example.reto2.beans.Materias;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,12 +13,12 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MateriasFacade extends NetConfiguration implements Runnable {
+public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
 
 
-    private ArrayList<Materia> response;
+    private ArrayList<Materias> response;
 
-    public MateriasFacade() {
+    public MateriasFacadeGetAll() {
         super();
     }
 
@@ -58,16 +58,17 @@ public class MateriasFacade extends NetConfiguration implements Runnable {
 
                 this.response = new ArrayList<>();
 
-                Materia materia;
+                Materias materia;
                 for (int i = 0; i < mainArray.length(); i++) {
                     JSONObject object = mainArray.getJSONObject(i);
 
-                    materia = new Materia();
-                    materia.setId((Integer) object.getInt("id"));
-                    materia.setNombre(object.getString("nombre"));
-                    materia.setNivel(object.getString("nivel"));
-                    materia.setTipoClase(object.getString("tipo de clase"));
-                    materia.setHoras(object.getString("horas"));
+                    materia = new Materias();
+                    materia.setIdMateria((Integer) object.getInt("idMateria"));
+                    materia.setNombreMateria(object.getString("nombreMateria"));
+                    materia.setNivelMateria(object.getString("nivelMateria"));
+                    materia.setTipoDeClase(object.getString("tipoDeClase"));
+                    materia.setNumeroHoras(object.getString("numeroHoras"));
+
                     this.response.add(materia);
                 }
             }
@@ -77,7 +78,7 @@ public class MateriasFacade extends NetConfiguration implements Runnable {
         }
     }
 
-    public ArrayList<Materia> getResponse() {
+    public ArrayList<Materias> getResponse() {
         return response;
     }
 }

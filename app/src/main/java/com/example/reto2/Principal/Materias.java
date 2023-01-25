@@ -5,23 +5,20 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto2.R;
 import com.example.reto2.adapter.MyTableAdapter;
-import com.example.reto2.beans.Materia;
-import com.example.reto2.network.MateriasFacade;
+import com.example.reto2.network.MateriasFacadeGetAll;
 
 import java.util.ArrayList;
 
 public class Materias extends AppCompatActivity {
 
-    private ArrayList<Materia> listado = new ArrayList<>();
+    private ArrayList<com.example.reto2.beans.Materias> listado = new ArrayList<>();
     private ListView listaMaterias;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +48,7 @@ public class Materias extends AppCompatActivity {
         listaMaterias.setAdapter(myTableAdapter);*/
 
         if (isConnected()) {
-            MateriasFacade materiasFacade = new MateriasFacade();
+            MateriasFacadeGetAll materiasFacade = new MateriasFacadeGetAll();
             Thread thread = new Thread(materiasFacade);
             try {
                 thread.start();
