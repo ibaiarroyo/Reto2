@@ -18,6 +18,7 @@ public class Profesores {
     public Profesores() {
     }
 
+
     public Integer getIdProf() {
         return idProf;
     }

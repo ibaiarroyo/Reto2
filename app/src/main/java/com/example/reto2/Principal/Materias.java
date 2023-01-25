@@ -63,6 +63,7 @@ public class Materias extends AppCompatActivity {
     }
     public boolean isConnected() {
         boolean ret = false;
+
         try {
             ConnectivityManager connectivityManager = (ConnectivityManager) getApplicationContext()
                     .getSystemService(Context.CONNECTIVITY_SERVICE);

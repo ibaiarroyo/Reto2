@@ -14,6 +14,7 @@ public class Usuarios {
 
     }
 
+
     public Integer getIdUser() {
         return idUser;
     }
