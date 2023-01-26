@@ -1,8 +1,8 @@
 package com.example.reto2.network;
 
+import com.example.reto2.beans.Apuntes;
+import com.example.reto2.beans.Profesores;
 
-
-import com.example.reto2.beans.Materias;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -12,20 +12,18 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
+public class ApuntesFacadeGetAll extends NetConfiguration implements Runnable {
+    private ArrayList<Apuntes> response;
 
-
-    private ArrayList<Materias> response;
-
-    public MateriasFacadeGetAll() {
+    public ApuntesFacadeGetAll() {
         super();
     }
 
     @Override
     public void run() {
-
-        final String theUrl = theBaseUrl + "/materias";
+        final String theUrl = theBaseUrl + "/apuntes";
         try {
             // The URL
             URL url = new URL(theUrl);
@@ -55,21 +53,24 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
                 String theUnprocessedJSON = response.toString();
 
                 JSONArray mainArray = new JSONArray(theUnprocessedJSON);
-
+                List<Apuntes> listApuntes = new ArrayList <Apuntes>();
                 this.response = new ArrayList<>();
 
-                Materias materia;
+                Apuntes apunte;
                 for (int i = 0; i < mainArray.length(); i++) {
                     JSONObject object = mainArray.getJSONObject(i);
 
-                    materia = new Materias();
-                    materia.setIdMateria((Integer) object.getInt("idMateria"));
-                    materia.setNombreMateria(object.getString("nombreMateria"));
-                    materia.setNivelMateria(object.getString("nivelMateria"));
-                    materia.setTipoDeClase(object.getString("tipoDeClase"));
-                    materia.setNumeroHoras(object.getInt("numeroHoras"));
+                    apunte = new Apuntes();
+                    apunte.setIdApunte((Integer) object.getInt("idApunte"));
+                    apunte.setNombreApunte((String) object.getString("nombreApunte"));
+                    apunte.setNivelEstudio((String)object.getString("nivelEstudio"));
+                    apunte.setUrl((String)object.getString("url"));
+                //TODO - Este set de profesores no se si se haria asi.
+                    apunte.setProfesores((Profesores)object.get("profesores"));
+                    listApuntes.add(apunte);
 
-                    this.response.add(materia);
+
+                    this.response.add(apunte);
                 }
             }
 
@@ -78,7 +79,8 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
         }
     }
 
-    public ArrayList<Materias> getResponse() {
+    public ArrayList<Apuntes> getResponse() {
         return response;
     }
 }
+

@@ -1,7 +1,7 @@
 package com.example.reto2.network;
 
-
-
+import com.example.reto2.beans.Usuarios;
+import com.example.reto2.beans.Cursos;
 import com.example.reto2.beans.Materias;
 
 import org.json.JSONArray;
@@ -12,25 +12,26 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
-public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
+public class UsuariosFacadeGetAll extends NetConfiguration implements Runnable {
 
 
-    private ArrayList<Materias> response;
+    private ArrayList<Usuarios> response;
 
-    public MateriasFacadeGetAll() {
+    public UsuariosFacadeGetAll() {
         super();
     }
 
     @Override
     public void run() {
 
-        final String theUrl = theBaseUrl + "/materias";
+        final String theUrl = theBaseUrl + "/auth/login";
         try {
             // The URL
             URL url = new URL(theUrl);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("GET");
+            httpURLConnection.setRequestMethod("POST");
 
             // Sending...
             int responseCode = httpURLConnection.getResponseCode();
@@ -58,18 +59,17 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
 
                 this.response = new ArrayList<>();
 
-                Materias materia;
+                Usuarios usuario;
                 for (int i = 0; i < mainArray.length(); i++) {
                     JSONObject object = mainArray.getJSONObject(i);
 
-                    materia = new Materias();
-                    materia.setIdMateria((Integer) object.getInt("idMateria"));
-                    materia.setNombreMateria(object.getString("nombreMateria"));
-                    materia.setNivelMateria(object.getString("nivelMateria"));
-                    materia.setTipoDeClase(object.getString("tipoDeClase"));
-                    materia.setNumeroHoras(object.getInt("numeroHoras"));
+                    usuario = new Usuarios();
+                    usuario.setIdUser((Integer) object.getInt("idUser"));
+                    usuario.setEmail(object.getString("email"));
+                    usuario.setNombreUser(object.getString("nombreUser"));
+                    usuario.setPassword(object.getString("password"));
 
-                    this.response.add(materia);
+                    this.response.add(usuario);
                 }
             }
 
@@ -78,7 +78,8 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
         }
     }
 
-    public ArrayList<Materias> getResponse() {
+
+    public ArrayList<Usuarios> getResponse() {
         return response;
     }
 }

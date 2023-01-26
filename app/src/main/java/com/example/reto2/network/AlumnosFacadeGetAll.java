@@ -2,7 +2,7 @@ package com.example.reto2.network;
 
 import com.example.reto2.beans.Cursos;
 import com.example.reto2.beans.Materias;
-import com.example.reto2.beans.Profesores;
+import com.example.reto2.beans.Alumnos;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,19 +14,19 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProfesoresFacadeGetAll extends NetConfiguration implements Runnable {
+public class AlumnosFacadeGetAll extends NetConfiguration implements Runnable {
 
 
-    private ArrayList<Profesores> response;
+    private ArrayList<Alumnos> response;
 
-    public ProfesoresFacadeGetAll() {
+    public AlumnosFacadeGetAll() {
         super();
     }
 
     @Override
     public void run() {
 
-        final String theUrl = theBaseUrl + "/profesores";
+        final String theUrl = theBaseUrl + "/alumnos";
         try {
             // The URL
             URL url = new URL(theUrl);
@@ -59,22 +59,22 @@ public class ProfesoresFacadeGetAll extends NetConfiguration implements Runnable
 
                 this.response = new ArrayList<>();
 
-                Profesores profesor;
+                Alumnos alumno;
                 for (int i = 0; i < mainArray.length(); i++) {
                     JSONObject object = mainArray.getJSONObject(i);
 
-                    profesor = new Profesores();
-                    profesor.setIdProf((Integer) object.getInt("idProf"));
-                    profesor.setIdUser((Integer) object.getInt("idUser"));
-                    profesor.setDisponibilidad(object.getString("disponibilidad"));
-                    profesor.setTitulacion(object.getString("titulacion"));
+                    alumno = new Alumnos();
+                    alumno.setIdAlum((Integer) object.getInt("idAlum"));
+                    alumno.setIdUser((Integer) object.getInt("idUser"));
+                    alumno.setDisponibilidad(object.getString("disponibilidad"));
+                    alumno.setTipoClase(object.getString("tipoClase"));
 
 
                     JSONArray arrayMaterias = new JSONArray((List) object.getJSONArray("materiaImpartida"));
                     List <Materias> listMaterias = new ArrayList <Materias>();
                     Materias materias;
                     for (int j = 0; j < arrayMaterias.length(); j++) {
-                        JSONObject objectM = arrayMaterias.getJSONObject(j);
+                        JSONObject objectMat = arrayMaterias.getJSONObject(j);
 
                         materias = new Materias();
                         materias.setIdMateria((Integer) object.getInt("idMateria"));
@@ -86,14 +86,14 @@ public class ProfesoresFacadeGetAll extends NetConfiguration implements Runnable
 
                         listMaterias.add(materias);
                     }
-                    profesor.setMateriaImpartida(listMaterias);
-                    profesor.setNivelEnsenanza(object.getString("nivelEnsenanza"));
+                    alumno.setMateriaElegida(listMaterias);
+                    alumno.setNivelMateria(object.getString("nivelEnsenanza"));
 
                     JSONArray arrayCursos = new JSONArray((List) object.getJSONArray("materiaImpartida"));
                     List <Cursos> listCursos = new ArrayList <Cursos>();
                     Cursos cursos;
                     for (int j = 0; j < arrayCursos.length(); j++) {
-                        JSONObject objectC = arrayCursos.getJSONObject(j);
+                        JSONObject objectCur = arrayCursos.getJSONObject(j);
 
                         cursos = new Cursos();
                         cursos.setIdCurso((Integer) object.getInt("idCurso"));
@@ -104,15 +104,13 @@ public class ProfesoresFacadeGetAll extends NetConfiguration implements Runnable
 
                         listCursos.add(cursos);
                     }
-                    profesor.setCursoImp(listCursos);
-
-                    profesor.setNombreprofe(object.getString("nombreProfe"));
+                    alumno.setCursoElegido(listCursos);
 
 
 
 
 
-                    this.response.add(profesor);
+                    this.response.add(alumno);
                 }
             }
 
@@ -122,7 +120,7 @@ public class ProfesoresFacadeGetAll extends NetConfiguration implements Runnable
     }
 
 
-    public ArrayList<Profesores> getResponse() {
+    public ArrayList<Alumnos> getResponse() {
         return response;
     }
 }
