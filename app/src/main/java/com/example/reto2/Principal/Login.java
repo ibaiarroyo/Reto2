@@ -7,13 +7,11 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto2.R;
 import com.example.reto2.beans.Usuarios;
-import com.example.reto2.network.AlumnosFacadeGetAll;
 import com.example.reto2.network.DataManager;
 import com.example.reto2.network.UsuariosFacadeGetAll;
 
@@ -21,11 +19,9 @@ import java.util.List;
 import java.util.Locale;
 
 public class Login extends AppCompatActivity {
-    private EditText editUser;
-    private EditText editPassword;
-    public Button botonRegistro;
-    public Button botonLog;
-    //public Button elegirIdioma;
+
+    private EditText textEmail, textPasswordLogin;
+    Button botonRegistro, botonLog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,43 +29,17 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         DataManager dataManager = new DataManager(this);
-       // editUser = findViewById(R.id.textUserLogin);
-        //editPassword = findViewById(R.id.textPasswordLogin);
+
         botonRegistro = findViewById(R.id.botonRegistroL);
         botonLog= findViewById(R.id.botonLogin);
-/*
+        textEmail.findViewById(R.id.textEmail);
+        textPasswordLogin.findViewById(R.id.textPasswordLogin);
+
         botonLog.setOnClickListener(view ->{
             Intent intentLogin = new Intent(Login.this, MenuUsuario.class);
             startActivity(intentLogin);
 
         });
-
- */
-        botonLog.setOnClickListener(view ->{
-            boolean login = inicioSesion();
-            Usuarios usuario = new Usuarios();
-            usuario.setEmail(editUser.getText().toString());
-            usuario.setPassword(editPassword.getText().toString());
-           // deleteAllFromDB();
-           /* if (recordarUsuario.isChecked()) {
-                dataManager.insert(usuario);
-            }
-*/
-            if (login) {
-                /*if (!recordarUsuario.isChecked()) {
-                    deleteAllFromDB();
-                }
-                */
-
-                Intent intentComunity = new Intent(Login.this, Materias.class);
-                intentComunity.putExtra("emailUsuario", usuario.getEmail());
-                startActivity(intentComunity);
-
-            } else {
-                Toast.makeText(getApplicationContext(), R.string.errorInicioSesion, Toast.LENGTH_SHORT).show();
-            }
-        });
-
         botonRegistro.setOnClickListener(view ->{
             Intent intentRegis = new Intent(Login.this, Register.class);
             startActivity(intentRegis);
@@ -77,6 +47,7 @@ public class Login extends AppCompatActivity {
         });
 
     }
+
     private Boolean inicioSesion() {
 
         UsuariosFacadeGetAll usuariosFacadeGetAll = new UsuariosFacadeGetAll();
@@ -88,8 +59,8 @@ public class Login extends AppCompatActivity {
             // Nothing to do here...
         }
 
-        String usuarioString = editUser.getText().toString();
-        String password = editPassword.getText().toString();
+        String usuarioString = textEmail.getText().toString();
+        String password = textPasswordLogin.getText().toString();
         boolean existe = false;
 
         List<Usuarios> personas = usuariosFacadeGetAll.getResponse();
@@ -105,6 +76,20 @@ public class Login extends AppCompatActivity {
         return existe;
     }
 
+    // Eliminar usuario de la ddbb
+    /*
+    public void deleteAllFromDB() {
+        DataManager dataManager = new DataManager(this);
+        List<Usuarios> usuariosListBorrar = dataManager.selectAllUsers();
+
+        if (usuariosListBorrar.size() != 0) {
+            for (int i = 0; i < usuariosListBorrar.size(); i++) {
+                dataManager.deleteByEmail(usuariosListBorrar.get(i).getEmail());
+            }
+        }
+    }
+    */
+
     public void setLocale(String lang) {
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
@@ -112,7 +97,9 @@ public class Login extends AppCompatActivity {
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
         res.updateConfiguration(conf, dm);
-        this.recreate();
+        Intent refresh = new Intent(this, Login.class);
+        finish();
+        startActivity(refresh);
     }
 
 }

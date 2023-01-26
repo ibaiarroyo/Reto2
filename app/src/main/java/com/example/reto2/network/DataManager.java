@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.reto2.R;
+import com.example.reto2.beans.Usuarios;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,6 @@ public class DataManager extends SQLiteOpenHelper {
         this.context = context;
     }
 
-    /*TODO SEGUIR A PARTIR DE AQUI*/
-
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         sqLiteDatabase.execSQL(CREATE_TABLE);
@@ -50,6 +49,65 @@ public class DataManager extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int oldVersion, int newVersion) {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(sqLiteDatabase);
+    }
+
+    /*TODO SEGUIR A PARTIR DE AQUI*/
+
+    // Seleccionar todos los users
+    public List<Usuarios> selectAllUsers() {
+        List<Usuarios> ret = new ArrayList<>();
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        Cursor cursor = sQLiteDatabase.rawQuery(query, null);
+        Usuarios user;
+        while (cursor.moveToNext()) {
+            user = new Usuarios();
+            user.setEmail(cursor.getString(0));
+            user.setPassword(cursor.getString(1));
+            ret.add(user);
+        }
+        cursor.close();
+        sQLiteDatabase.close();
+        return ret;
+    }
+
+    // Insertar user
+    public void insert(Usuarios user)
+    {
+
+        ContentValues values = new ContentValues();
+        values.put(EMAIL, user.getEmail());
+        values.put(PASSWORD, user.getPassword());
+
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        sQLiteDatabase.insert(TABLE_NAME, null, values);
+        sQLiteDatabase.close();
+    }
+
+    public boolean ifTableExists() {
+        boolean ret = false;
+        Cursor cursor = null;
+        try {
+            SQLiteDatabase sQLiteDatabase = this.getReadableDatabase();
+            String query = "select DISTINCT tbl_name from sqlite_master where tbl_name = '" +
+                    TABLE_NAME + "'";
+            cursor = sQLiteDatabase.rawQuery(query, null);
+            if (cursor != null) {
+                if (cursor.getCount() > 0) {
+                    ret = true;
+                }
+            }
+        } catch (Exception e) {
+            // Nothing to do here...
+        } finally {
+            try {
+                assert cursor != null;
+                cursor.close();
+            } catch (NullPointerException e) {
+                // Nothing to do here...
+            }
+        }
+        return ret;
     }
 
 }
