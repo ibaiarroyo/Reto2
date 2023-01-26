@@ -10,7 +10,7 @@ public class Materias implements Serializable {
     private String nombreMateria;
     private String nivelMateria;
     private String tipoDeClase;
-    private String numeroHoras;
+    private Integer numeroHoras;
     private List<Alumnos> alumno;
     private List<Profesores> idProfe;
 
@@ -49,11 +49,11 @@ public class Materias implements Serializable {
         this.tipoDeClase = tipoDeClase;
     }
 
-    public String getNumeroHoras() {
+    public Integer getNumeroHoras() {
         return numeroHoras;
     }
 
-    public void setNumeroHoras(String numeroHoras) {
+    public void setNumeroHoras(Integer numeroHoras) {
         this.numeroHoras = numeroHoras;
     }
 

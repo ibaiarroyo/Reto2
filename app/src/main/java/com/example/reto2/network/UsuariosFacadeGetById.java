@@ -57,7 +57,7 @@ public class UsuariosFacadeGetById extends NetConfiguration implements Runnable 
                 user.setEmail((String) object.getString("email"));
                 user.setPassword((String) object.getString("password"));
 
-
+    //TODO - AL DEVOLVER LOS DATOS NO ESTOY SEGURO SI ESTA BIEN, CREO QUE NO DEVUELVE NADA
 
 
             }

@@ -1,6 +1,7 @@
 package com.example.reto2.network;
 
 import com.example.reto2.beans.Apuntes;
+import com.example.reto2.beans.Profesores;
 
 
 import org.json.JSONArray;
@@ -64,8 +65,8 @@ public class ApuntesFacadeGetAll extends NetConfiguration implements Runnable {
                     apunte.setNombreApunte((String) object.getString("nombreApunte"));
                     apunte.setNivelEstudio((String)object.getString("nivelEstudio"));
                     apunte.setUrl((String)object.getString("url"));
-                    //TODO setProfesores???????????
-                    //apunte.setProfesores(object.getClass("profesores"));
+                //TODO - Este set de profesores no se si se haria asi.
+                    apunte.setProfesores((Profesores)object.get("profesores"));
                     listApuntes.add(apunte);
 
 

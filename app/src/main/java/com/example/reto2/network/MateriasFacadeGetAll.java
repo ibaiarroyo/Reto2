@@ -67,7 +67,7 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
                     materia.setNombreMateria(object.getString("nombreMateria"));
                     materia.setNivelMateria(object.getString("nivelMateria"));
                     materia.setTipoDeClase(object.getString("tipoDeClase"));
-                    materia.setNumeroHoras(object.getString("numeroHoras"));
+                    materia.setNumeroHoras(object.getInt("numeroHoras"));
 
                     this.response.add(materia);
                 }

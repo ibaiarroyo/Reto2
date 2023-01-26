@@ -81,7 +81,7 @@ public class AlumnosFacadeGetAll extends NetConfiguration implements Runnable {
                         materias.setNombreMateria(object.getString("nombreMateria"));
                         materias.setNivelMateria(object.getString("nivelMateria"));
                         materias.setTipoDeClase(object.getString("tipoDeClase"));
-                        materias.setNumeroHoras(object.getString("numeroHoras"));
+                        materias.setNumeroHoras(object.getInt("numeroHoras"));
 
 
                         listMaterias.add(materias);
