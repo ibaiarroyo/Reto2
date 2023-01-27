@@ -1,5 +1,7 @@
 package com.example.reto2.network;
 
+import com.example.reto2.beans.Alumnos;
+import com.example.reto2.beans.Profesores;
 import com.example.reto2.beans.Usuarios;
 import com.example.reto2.beans.Cursos;
 import com.example.reto2.beans.Materias;
@@ -13,9 +15,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class UsuariosFacadeGetAll extends NetConfiguration implements Runnable {
 
+    private final String theUrl = theBaseUrl + "/auth/login";
 
     private ArrayList<Usuarios> response;
 
@@ -26,12 +30,11 @@ public class UsuariosFacadeGetAll extends NetConfiguration implements Runnable {
     @Override
     public void run() {
 
-        final String theUrl = theBaseUrl + "/auth/login";
         try {
             // The URL
             URL url = new URL(theUrl);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setRequestMethod("POST");
+            httpURLConnection.setRequestMethod("POST ");
 
             // Sending...
             int responseCode = httpURLConnection.getResponseCode();
@@ -64,10 +67,13 @@ public class UsuariosFacadeGetAll extends NetConfiguration implements Runnable {
                     JSONObject object = mainArray.getJSONObject(i);
 
                     usuario = new Usuarios();
-                    usuario.setIdUser((Integer) object.getInt("idUser"));
+                    usuario.setIdUser(object.getInt("idUser"));
                     usuario.setEmail(object.getString("email"));
                     usuario.setNombreUser(object.getString("nombreUser"));
                     usuario.setPassword(object.getString("password"));
+                    usuario.setAlumno((Set<Profesores>) object.get("alumno"));
+                    usuario.setProfesor((Set<Profesores>) object.get("profesor"));
+                    usuario.setEnabled(true);
 
                     this.response.add(usuario);
                 }

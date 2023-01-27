@@ -84,6 +84,24 @@ public class DataManager extends SQLiteOpenHelper {
         sQLiteDatabase.close();
     }
 
+    public boolean update(Usuarios user) {
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+        ContentValues args = new ContentValues();
+        args.put(EMAIL, user.getEmail());
+        args.put(PASSWORD, user.getPassword());
+        String whereClause = EMAIL + "=" + user.getIdUser();
+        return sQLiteDatabase.update(TABLE_NAME, args, whereClause, null) > 0;
+    }
+
+    public void deleteByEmail(String email) {
+
+        SQLiteDatabase sQLiteDatabase = this.getWritableDatabase();
+
+        sQLiteDatabase.delete(TABLE_NAME, EMAIL + "=?",
+                new String[]{email});
+        sQLiteDatabase.close();
+    }
+
     public boolean ifTableExists() {
         boolean ret = false;
         Cursor cursor = null;
