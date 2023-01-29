@@ -1,6 +1,6 @@
 package com.example.reto2.network;
 
-import com.example.reto2.beans.Cursos;
+import com.example.reto2.beans.Profesores;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,14 +9,14 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class CursosFacadePost extends NetConfiguration implements Runnable {
+public class ProfesoresPost extends NetConfiguration implements Runnable {
 
-    private final String theUrl = theBaseUrl + "/cursos";
-    private Cursos curso;
+    private final String theUrl = theBaseUrl + "/profesores";
+    private Profesores profesor;
     private int response;
 
-    public CursosFacadePost(Cursos cursoCons) {
-        curso = cursoCons;
+    public ProfesoresPost(Profesores profesorCons) {
+        profesor = profesorCons;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class CursosFacadePost extends NetConfiguration implements Runnable {
             httpURLConnection.setRequestProperty("Accept", "application/json");
             httpURLConnection.setDoOutput(true);
             httpURLConnection.setDoInput(true);
-            String jsonInputString = curso.toString();
+            String jsonInputString = profesor.toString();
             try (OutputStream postSend = httpURLConnection.getOutputStream()) {
                 byte[] input = jsonInputString.getBytes(StandardCharsets.UTF_8);
                 postSend.write(input, 0, input.length);

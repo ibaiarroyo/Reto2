@@ -9,13 +9,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class AlumnosFacadePost extends NetConfiguration implements Runnable {
+public class AlumnosPost extends NetConfiguration implements Runnable {
 
     private final String theUrl = theBaseUrl + "/alumnos";
     private Alumnos alumno;
     private int response;
 
-    public AlumnosFacadePost(Alumnos alumnoCons) {
+    public AlumnosPost(Alumnos alumnoCons) {
         alumno = alumnoCons;
     }
 
