@@ -1,7 +1,6 @@
 package com.example.reto2.network;
 
 import com.example.reto2.beans.Materias;
-import com.example.reto2.beans.Profesores;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,13 +9,13 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
-public class MateriasPost extends NetConfiguration implements Runnable {
+public class MateriasFacadePost extends NetConfiguration implements Runnable {
 
     private final String theUrl = theBaseUrl + "/materias";
     private Materias materia;
     private int response;
 
-    public MateriasPost(Materias materiaCons) {
+    public MateriasFacadePost(Materias materiaCons) {
         materia = materiaCons;
     }
 
