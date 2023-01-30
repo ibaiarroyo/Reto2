@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Reto2</string>
+
+    <string name="error_communication">Error de comunicacion</string>
+
     <string name="email">Email</string>
     <string name="Contraseña">Contraseña</string>
     <string name="Iniciar">Iniciar sesion</string>

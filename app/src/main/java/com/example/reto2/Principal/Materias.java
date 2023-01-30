@@ -10,9 +10,11 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.reto2.Logear.Logear;
 import com.example.reto2.R;
 import com.example.reto2.adapter.MyTableAdapter;
 import com.example.reto2.network.MateriasFacadeGetAll;
+import com.example.reto2.network.UsuariosFacadeGetAll;
 
 import java.util.ArrayList;
 
@@ -34,30 +36,55 @@ public class Materias extends AppCompatActivity {
         //listado.add(materia);
         //TODO ESTO FUNCIONA PERO NO CONEXIONA CON LA BBDD
 
-        MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.id.NomMatTextView,listado);
-        ((ListView)findViewById(R.id.NomMatTextView)).setAdapter( myTableAdapter );
+//        MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.id.NomMatTextView,listado);
+//        ((ListView)findViewById(R.id.NomMatTextView)).setAdapter( myTableAdapter );
+//
+//        (findViewById( R.id.buttonVolver)).setOnClickListener( v -> {
+//            Intent intentVolver = new Intent(Materias.this, MenuUsuario.class);
+//            startActivity(intentVolver);
+//        });
+
+        listaMaterias = findViewById(R.id.NomMatTextView);
+
+        MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.layout.materias_layout,listado);
+        listaMaterias.setAdapter(myTableAdapter);
+
 
         (findViewById( R.id.buttonVolver)).setOnClickListener( v -> {
             Intent intentVolver = new Intent(Materias.this, MenuUsuario.class);
             startActivity(intentVolver);
         });
-        /*
-        listaMaterias = findViewById(R.id.NomMatTextView);
 
-        MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.id.NomMatTextView, listado);
-        listaMaterias.setAdapter(myTableAdapter);*/
 
         if (isConnected()) {
+            System.out.println("Has entrado");
             MateriasFacadeGetAll materiasFacadeGetAll = new MateriasFacadeGetAll();
+
             Thread thread = new Thread(materiasFacadeGetAll);
             try {
                 thread.start();
                 thread.join(); // Awaiting response from the server...
+                int position = 1;
+                System.out.println("Estas dentro");
+
+                    int duartion = Toast.LENGTH_LONG;
+
+                    Toast toast = Toast.makeText(this, "HEYYYYY", duartion);
+                    Intent intent = new Intent(Materias.this, Materias.class);
+                    startActivity(intent);
+                    //startForResult.launch(intent);
+
+
+                    System.out.println("Estas en materiasAll");
+
             } catch (InterruptedException e) {
                 // Nothing to do here...
             }
+
             listado.addAll(materiasFacadeGetAll.getResponse());
+
         }
+
             /*Intent intentaComunity = new Intent(Materias.this, Comunity.class);
             startActivity(intentaComunity);*/
     }
