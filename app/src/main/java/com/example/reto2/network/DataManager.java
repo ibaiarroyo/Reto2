@@ -74,7 +74,6 @@ public class DataManager extends SQLiteOpenHelper {
     // Insertar user
     public void insert(Usuarios user)
     {
-
         ContentValues values = new ContentValues();
         values.put(EMAIL, user.getEmail());
         values.put(PASSWORD, user.getPassword());

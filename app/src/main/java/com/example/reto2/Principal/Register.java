@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,6 +19,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto2.Logear.Registro;
 import com.example.reto2.R;
+import com.example.reto2.beans.Usuarios;
+import com.example.reto2.network.UsuariosFacadeGetAll;
+
+import java.util.List;
+import java.util.regex.Pattern;
 
 public class Register extends AppCompatActivity {
     public EditText nombre, email, password1, password2;
@@ -44,7 +50,18 @@ public class Register extends AppCompatActivity {
             }
         });
 
+
+//        Usuarios usuario = new Usuarios();
+
         botonRegistro.setOnClickListener(new View.OnClickListener() {
+
+            String remail = email.getText().toString().toLowerCase();
+            String rnombreUser = nombre.getText().toString().toLowerCase();
+            String rpassword = password1.getText().toString();
+            String rpassword2 = password2.getText().toString();
+
+            boolean errorEmail = validarEmail(remail);
+
             @Override
             public void onClick(View view) {
                 if( validarRegistro()){
@@ -59,8 +76,15 @@ public class Register extends AppCompatActivity {
                         }
                         // Processing the answer
                         //RegisterResponse registerResponse = registro.getRegisterResponse();
-                        Intent intent = new Intent(Register.this, Login.class);
-                        startForResult.launch(intent);
+                        Intent intentalogin = new Intent(Register.this, Login.class);
+                        intentalogin.putExtra("Login", remail);
+                        intentalogin.putExtra("Password", rpassword);
+                        System.out.println(remail);
+                        System.out.println(rpassword);
+                        //startActivity(intent);
+                        startForResult.launch(intentalogin);
+                        Toast.makeText(Register.this, R.string.registradocorrectamente, Toast.LENGTH_SHORT).show();
+
 //                        Toast.makeText(RegisterActivity.this, registerResponse.getMensajeRespuesta(), Toast.LENGTH_LONG).show();
                     }
 
@@ -77,6 +101,11 @@ public class Register extends AppCompatActivity {
             startActivity(intentLogi);
         });
 
+    }
+
+    private boolean validarEmail(String email) {
+        Pattern pattern = Patterns.EMAIL_ADDRESS;
+        return pattern.matcher(email).matches();
     }
 
     public String generateRegisterJson() {

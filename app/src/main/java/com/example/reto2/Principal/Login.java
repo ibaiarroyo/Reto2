@@ -2,16 +2,20 @@ package com.example.reto2.Principal;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -42,7 +46,7 @@ public class Login extends AppCompatActivity {
 
     private EditText textEmail, textPasswordLogin;
     private CheckBox recordarUsuario;
-    Button botonRegistro, iniciarSesion;
+    Button botonRegistro, iniciarSesion, elegirIdioma;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +61,9 @@ public class Login extends AppCompatActivity {
         textPasswordLogin = findViewById(R.id.textPasswordLogin);
         iniciarSesion = findViewById(R.id.botonLogin);
         recordarUsuario = findViewById(R.id.recordarSesion);
+        elegirIdioma = findViewById(R.id.cambiarIdioma);
+
+        recuerdameSetIntoText();
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
@@ -77,102 +84,56 @@ public class Login extends AppCompatActivity {
                 }
             }
         });
+
         iniciarSesion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+                //boolean login = inicioSesion();
+                Usuarios usuario = new Usuarios();
+                usuario.setEmail(textEmail.getText().toString());
+                usuario.setPassword(textPasswordLogin.getText().toString());
+                deleteAllFromDB();
+                if (recordarUsuario.isChecked()) {
+                    dataManager.insert(usuario);
+                }
+                else {
+                    Toast.makeText(getApplicationContext(), R.string.errorInicioSesion, Toast.LENGTH_SHORT).show();
+                }
 
-                //attemps++;
+                Context context = getApplicationContext();
+                String string = "Username: " + textEmail.getText().toString()
+                        + "\nPassword: " + textPasswordLogin.getText().toString();
 
-//                if ((!etNombre.getText().toString().equals("")) && (!etpassword.getText().toString().equals(""))) {
+//              Empieza el login
+                if (isConnected()) {
+                    System.out.println("Has entrado");
+                    UsuariosFacadeGetAll login = new UsuariosFacadeGetAll(Login.this, Login.this.generateSongJson(),Login.this.datosUserb());
 
-//                    if ((!etNombre.getText().toString().equals("Rodrigo"))
-//                            && (!etpassword.getText().toString().equals("123456"))) {
+                    Thread thread = new Thread(login);
+                    try {
+                        thread.start();
+                        thread.join(); // Awaiting response from the server...
+                        int position = 1;
+                        System.out.println("Estas dentro");
+                        Logear lista = login.getResponse();
+                        if(lista != null){
+                            System.out.println("Entras por la puerta grande primo");
+                            int duartion = Toast.LENGTH_LONG;
 
-
-//                        if (checkBox.isChecked()) {
-//                            Boolean boolIsChecked = checkBox.isChecked();
-//                            SharedPreferences.Editor editor = mPrefs.edit();
-//                            editor.putString("pref_name", etNombre.getText().toString());
-//                            editor.putString("pref_pass", etpassword.getText().toString());
-//                            editor.putBoolean("pref_check", boolIsChecked);
-//                            editor.apply();
-//                            Toast.makeText(getApplicationContext(), "Se ha guardado",
-//                                    Toast.LENGTH_SHORT).show();
-
-//                        } else {
-//                            mPrefs.edit().clear().apply();
-
-//                        }
-
-//                        Log.i("Username", etNombre.getText().toString());
-//                        Log.i("Password", etpassword.getText().toString());
-
-                        Context context = getApplicationContext();
-                        String string = "Username: " + textEmail.getText().toString()
-                                + "\nPassword: " + textPasswordLogin.getText().toString();
-
-//                    Meter aqui conexion login
-
-                        if (isConnected()) {
-                            System.out.println("Has entrado");
-                            UsuariosFacadeGetAll login = new UsuariosFacadeGetAll(Login.this, Login.this.generateSongJson(),Login.this.datosUserb());
-
-                            Thread thread = new Thread(login);
-                            try {
-                                thread.start();
-                                thread.join(); // Awaiting response from the server...
-                                int position = 1;
-                                System.out.println("Estas dentro");
-                                Logear lista = login.getResponse();
-                                if(lista != null){
-                                    System.out.println("Entras por la puerta grande primo");
-                                    int duartion = Toast.LENGTH_LONG;
-
-                                    Toast toast = Toast.makeText(context, string, duartion);
-                                    Intent intent = new Intent(Login.this, MenuUsuario.class);
-                                    startForResult.launch(intent);
-//                                    overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
-
-                                }
-                                else{
-                                    System.out.println("Te dejo entrar por pena pringado");
-                                }
-
-                            } catch (InterruptedException e) {
-                                // Nothing to do here...
-                            }
-
+                            Toast toast = Toast.makeText(context, string, duartion);
+                            Intent intent = new Intent(Login.this, MenuUsuario.class);
+                            startForResult.launch(intent);
+//                          overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
+                        } else{
+                            System.out.println("Te dejo entrar por pena pringado");
                         }
-
+                    } catch (InterruptedException e) {
+                                // Nothing to do here...
+                    }
+                }
                         textEmail.getText().clear();
                         textPasswordLogin.getText().clear();
-
-                    }
-
-//            boolean login = inicioSesion();
-//            Usuarios usuario = new Usuarios();
-//            usuario.setEmail(textEmail.getText().toString());
-//            usuario.setPassword(textPasswordLogin.toString());
-//            deleteAllFromDB();
-//
-//            if (recordarUsuario.isChecked()) {
-//                dataManager.insert(usuario);
-//            }
-//
-//            if (login) {
-//                if (!recordarUsuario.isChecked()) {
-//                    deleteAllFromDB();
-//                }
-//                Intent intentComunity = new Intent(Login.this, MenuUsuario.class);
-//                intentComunity.putExtra("emailUsuario", usuario.getEmail());
-//                startActivity(intentComunity);
-//
-//            } else {
-//                Toast.makeText(getApplicationContext(), R.string.errorInicioSesion, Toast.LENGTH_SHORT).show();
-//            }
-////            Intent intentLogin = new Intent(Login.this, MenuUsuario.class);
-////            startActivity(intentLogin);
-
+            }
         });
 
         recordarUsuario.setOnCheckedChangeListener((compoundButton, checked) -> {
@@ -190,6 +151,33 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        elegirIdioma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupMenu popupMenu = new PopupMenu(Login.this, elegirIdioma);
+                popupMenu.getMenuInflater().inflate(R.menu.menu_idioma, popupMenu.getMenu());
+
+                popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                    @Override
+                    public boolean onMenuItemClick(MenuItem menuItem) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.en:
+                                setLocale("en");
+                                break;
+                            case R.id.es:
+                                setLocale("es");
+                                break;
+                            case R.id.eu:
+                                setLocale("eu");
+                                break;
+                        }
+                        return false;
+                    }
+                });
+                popupMenu.show();
+            }
+        });
+
         botonRegistro.setOnClickListener(view ->{
             Intent intentRegis = new Intent(Login.this, Register.class);
             startActivity(intentRegis);
@@ -198,33 +186,16 @@ public class Login extends AppCompatActivity {
 
     }
 
-//    private Boolean inicioSesion() {
-//
-//        UsuariosFacadeGetAll usuariosFacadeGetAll = new UsuariosFacadeGetAll();
-//        Thread thread = new Thread(usuariosFacadeGetAll);
-//        try {
-//            thread.start();
-//            thread.join(); // Awaiting response from the server...
-//        } catch (InterruptedException e) {
-//            // Nothing to do here...
-//        }
-//
-//        String usuarioString = textEmail.getText().toString();
-//        String password = textPasswordLogin.getText().toString();
-//        boolean existe = false;
-//
-//        Usuarios personas = usuariosFacadeGetAll.getResponse();
-//
-//        for (int i = 0; i < personas.size(); i++) {
-//            if (personas.get(i).getEmail().equalsIgnoreCase(usuarioString)) {
-//                if (personas.get(i).getPassword().equals(password)) {
-//                    existe = true;
-//                    break;
-//                }
-//            }
-//        }
-//        return existe;
-//    }
+    public void recuerdameSetIntoText() {
+        DataManager dataManager = new DataManager(this);
+
+        List<Usuarios> user = dataManager.selectAllUsers();
+        if (user.size() != 0) {
+            prueba();
+            textEmail.setText(user.get(0).getEmail());
+            textPasswordLogin.setText(user.get(0).getPassword());
+        }
+    }
 
     public void deleteAllFromDB() {
         DataManager dataManager = new DataManager(this);
@@ -263,6 +234,28 @@ public class Login extends AppCompatActivity {
         return ret;
     }
 
+    public void setLocale(String lang) {
+//        Locale myLocale = new Locale(lang);
+//        Resources res = getResources();
+//        DisplayMetrics dm = res.getDisplayMetrics();
+//        Configuration conf = res.getConfiguration();
+//        conf.locale = myLocale;
+//        res.updateConfiguration(conf, dm);
+//        Intent refresh = new Intent(this, Login.class);
+//        finish();
+//        startActivity(refresh);
 
+        Locale myLocale = new Locale(lang);
+        Resources res = getResources();
+        DisplayMetrics dm = res.getDisplayMetrics();
+        Locale.setDefault(myLocale);
+        Configuration config = getBaseContext().getResources().getConfiguration();
+        config.locale = myLocale;
+        res.updateConfiguration(config, dm);
+        Intent refresh = new Intent(this, Login.class);
+        finish();
+        startActivity(refresh);
+
+    }
 
 }
