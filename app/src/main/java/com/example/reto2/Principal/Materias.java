@@ -48,15 +48,15 @@ public class Materias extends AppCompatActivity {
         listaMaterias.setAdapter(myTableAdapter);*/
 
         if (isConnected()) {
-            MateriasFacadeGetAll materiasFacadeGetAll = new MateriasFacadeGetAll();
-            Thread thread = new Thread(materiasFacadeGetAll);
+            MateriasFacadeGetAll materiasFacade = new MateriasFacadeGetAll();
+            Thread thread = new Thread(materiasFacade);
             try {
                 thread.start();
                 thread.join(); // Awaiting response from the server...
             } catch (InterruptedException e) {
                 // Nothing to do here...
             }
-            listado.addAll(materiasFacadeGetAll.getResponse());
+            listado.addAll(materiasFacade.getResponse());
         }
             /*Intent intentaComunity = new Intent(Materias.this, Comunity.class);
             startActivity(intentaComunity);*/

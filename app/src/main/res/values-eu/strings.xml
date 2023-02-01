@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Reto2</string>
+
+    <string name="error_communication">Komunikazioa Errorea</string>
+    <string name="registradocorrectamente">Error Comunication</string>
+
+    <string name="email">Email</string>
+    <string name="Contraseña">Pasahitza</string>
+    <string name="recordarSesion">Gogoratu Nazazu</string>
+    <string name="Iniciar">Saioa Sartu</string>
+    <string name="Register">Erregistratu</string>
+    <string name="cambiarIdioma">Zizkuntza Aldatu</string>
+
+    <string name="es">Gaztelera</string>
+    <string name="en">Ingelesa</string>
+    <string name="eu">Euskara</string>
+
+
+    <string name="EditPass">Pasahitza Aldatu</string>
+    <string name="Nombre">Izena</string>
+    <string name="Horario">Ordutegia</string>
+    <string name="Nivel">Maila</string>
+    <string name="Profesor">Irakaslea</string>
+    <string name="Lugar">Lekua</string>
+    <string name="MateriasAsistidas">Subject Attended:</string>
+    <string name="Salir">Out</string>
+    <string name="Email">Email</string>
+    <string name="RContraseña">Rewrite Password</string>
+    <string name="Cancelar">Cancel</string>
+    <string name="ContraseñaAc">Acutal Password</string>
+    <string name="ContraseñaNu">New Password</string>
+    <string name="RepContraNu">Rewrite new Password</string>
+    <string name="VerMaterias">Subjects List</string>
+    <string name="comerror">Error Comunication</string>
+    <string name="Eliminar_materia">Drop Subject</string>
+    <string name="error">Error!</string>
+    <string name="errorInicioSesion">Error Sign In!</string>
+</resources>
