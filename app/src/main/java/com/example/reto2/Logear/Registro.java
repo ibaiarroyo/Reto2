@@ -24,7 +24,7 @@ public class Registro extends NetConfiguration implements Runnable {
         res = context.getResources();
         this.userRegisterJson = userRegisterJson;
     }
-
+//Holaaaaaaaa
     @Override
     public void run() {
         try {
