@@ -43,8 +43,9 @@ public class Login extends AppCompatActivity {
 
     private EditText textEmail, textPasswordLogin;
     private CheckBox recordarUsuario;
-    Button botonRegistro, iniciarSesion, elegirIdioma;
+    Button botonRegistro, iniciarSesion, elegirIdioma, contrasenaOlvidada;
 
+    Intent IntenPass = new Intent();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class Login extends AppCompatActivity {
         iniciarSesion = findViewById(R.id.botonLogin);
         recordarUsuario = findViewById(R.id.recordarSesion);
         elegirIdioma = findViewById(R.id.cambiarIdioma);
+        contrasenaOlvidada=findViewById(R.id.buttonForgotPass);
 
         recuerdameSetIntoText();
 
@@ -213,6 +215,17 @@ public class Login extends AppCompatActivity {
                 deleteAllFromDB();
             }
         });
+
+
+        contrasenaOlvidada.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                IntenPass = new Intent(Login.this, ResetPass.class);
+                startActivity(IntenPass);
+
+            }
+        });
+
 
     }
 

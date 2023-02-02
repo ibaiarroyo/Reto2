@@ -11,6 +11,9 @@
     <string name="Iniciar">Iniciar sesion</string>
     <string name="Register">Registrarse</string>
     <string name="cambiarIdioma">Idioma</string>
+    <string name="Return" translatable="false">Volver</string>
+    <string name="PassReseteada" translatable="false">Contraseña actualizada</string>
+    <string name="BtnReset" translatable="false">Reset</string>
 
     <string name="es">Español</string>
     <string name="en">Ingles</string>
@@ -35,4 +38,5 @@
     <string name="Eliminar_materia">Eliminar materia</string>
     <string name="error">Error!</string>
     <string name="errorInicioSesion">Error en el Inicio de Sesion</string>
+
 </resources>
