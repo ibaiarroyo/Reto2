@@ -244,6 +244,7 @@ public class Login extends AppCompatActivity {
 //        Intent refresh = new Intent(this, Login.class);
 //        finish();
 //        startActivity(refresh);
+        ///hnfdosnvnlsdfvd
 
         Locale myLocale = new Locale(lang);
         Resources res = getResources();
