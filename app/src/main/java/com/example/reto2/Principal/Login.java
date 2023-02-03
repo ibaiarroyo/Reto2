@@ -1,5 +1,7 @@
 package com.example.reto2.Principal;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,14 +10,20 @@ import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResult;
@@ -46,7 +54,10 @@ public class Login extends AppCompatActivity {
 
     private EditText textEmail, textPasswordLogin;
     private CheckBox recordarUsuario;
-    Button botonRegistro, iniciarSesion, elegirIdioma;
+    Button botonRegistro, iniciarSesion, elegirIdioma, contrasenaOlvidada;
+    Animation splash_top;
+    TextView textViewM;
+    ImageView logo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +73,15 @@ public class Login extends AppCompatActivity {
         iniciarSesion = findViewById(R.id.botonLogin);
         recordarUsuario = findViewById(R.id.recordarSesion);
         elegirIdioma = findViewById(R.id.cambiarIdioma);
+        contrasenaOlvidada = findViewById(R.id.buttonForgotPass);
+        logo = findViewById(R.id.logo_image);
+        textViewM = findViewById(R.id.textViewMail);
+
+        final LoadingDialog loadingDialog = new LoadingDialog(Login.this);
+
+        splash_top = AnimationUtils.loadAnimation(this, R.anim.splash_top);
+
+        logo.setAnimation(splash_top);
 
         recuerdameSetIntoText();
 
@@ -88,6 +108,18 @@ public class Login extends AppCompatActivity {
         iniciarSesion.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
+
+                loadingDialog.startLoadingDialog();
+                Handler handler= new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        loadingDialog.dismissDialog();
+                    }
+                },2000);
+                Intent intentLogin = new Intent(Login.this, MenuUsuario.class);
+                startActivity(intentLogin);
+
                 //boolean login = inicioSesion();
                 Usuarios usuario = new Usuarios();
                 usuario.setEmail(textEmail.getText().toString());
@@ -184,6 +216,44 @@ public class Login extends AppCompatActivity {
 
         });
 
+        contrasenaOlvidada.setOnClickListener(new View.OnClickListener() {
+
+
+            @Override
+            public void onClick(View view) {
+//                 IntenPass = new Intent();
+                Intent IntenPass = new Intent(Login.this, ResetPass.class);
+                startActivity(IntenPass);
+
+            }
+        });
+
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.opcion_materias,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        int id = item.getItemId();
+
+        if(id==R.id.compartir){
+            Toast.makeText(this, "Has copiado el correo de contecto en el portapapeles!.", Toast.LENGTH_SHORT).show();
+
+            // obtenemos el texto del textViewM
+            String text = textViewM.getText().toString();
+            ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+            ClipData clip = ClipData.newPlainText("text",  text);
+            clipboard.setPrimaryClip(clip);
+
+        }else if(id==R.id.salir){
+            Toast.makeText(this, "Has cerrado la aplicacion", Toast.LENGTH_SHORT).show();
+            finish();
+
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 
     public void recuerdameSetIntoText() {
@@ -235,16 +305,6 @@ public class Login extends AppCompatActivity {
     }
 
     public void setLocale(String lang) {
-//        Locale myLocale = new Locale(lang);
-//        Resources res = getResources();
-//        DisplayMetrics dm = res.getDisplayMetrics();
-//        Configuration conf = res.getConfiguration();
-//        conf.locale = myLocale;
-//        res.updateConfiguration(conf, dm);
-//        Intent refresh = new Intent(this, Login.class);
-//        finish();
-//        startActivity(refresh);
-        ///hnfdosnvnlsdfvd
 
         Locale myLocale = new Locale(lang);
         Resources res = getResources();

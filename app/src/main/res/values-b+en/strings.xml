@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources><string name="app_name">Reto2</string>
+<resources><string name="app_name">Apuntes Hub</string>
 
     <string name="error_communication">Error Comunication</string>
     <string name="registradocorrectamente">Error Comunication</string>
@@ -10,6 +10,8 @@
     <string name="Iniciar">Sign In</string>
     <string name="Register">Register</string>
     <string name="cambiarIdioma">Language</string>
+    <string name="buttonForgotPass">Reset Password</string>
+
 
     <string name="es">Spanish</string>
     <string name="en">English</string>
