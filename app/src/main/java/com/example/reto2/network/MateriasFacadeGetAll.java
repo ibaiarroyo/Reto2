@@ -26,6 +26,9 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
     public void run() {
 
         final String theUrl = theBaseUrl + "/materias";
+
+        System.out.println("HEYYYYYYY Qeu miras");
+
         try {
             // The URL
             URL url = new URL(theUrl);

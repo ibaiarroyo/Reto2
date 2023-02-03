@@ -1,9 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
 <resources>
-    <string name="app_name">Reto2</string>
+    <string name="app_name">Apuntes Hub</string>
+
+    <string name="error_communication">Error de comunicacion</string>
+    <string name="registradocorrectamente">Error de comunicacion</string>
+
     <string name="email">Email</string>
     <string name="Contraseña">Contraseña</string>
+    <string name="recordarSesion">Recuerdame</string>
     <string name="Iniciar">Iniciar sesion</string>
     <string name="Register">Registrarse</string>
+    <string name="cambiarIdioma">Idioma</string>
+    <string name="buttonForgotPass">Recuperar Contraseña</string>
+
+
+    <string name="es">Español</string>
+    <string name="en">Ingles</string>
+    <string name="eu">Euskera</string>
 
     <string name="EditPass">Editar Contraseña</string>
     <string name="Nombre">Nombre</string>

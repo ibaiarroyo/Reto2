@@ -34,8 +34,8 @@ public class Comunity extends AppCompatActivity implements NavigationView.OnNavi
         //listaMaterias = findViewById(R.id.NomMatTextView);
 
         Materias materia = new Materias();
-        materia.setId(1);
-        materia.setNombre("COSA");
+        materia.setIdMateria(1);
+        materia.setNombreMateria("COSA");
 
         ArrayList<Materias> listado = new ArrayList<>();
         listado.add(materia);

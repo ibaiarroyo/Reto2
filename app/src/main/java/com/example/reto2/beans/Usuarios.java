@@ -1,8 +1,12 @@
 package com.example.reto2.beans;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class Usuarios {
+public class Usuarios implements Serializable {
+
+    private static final long serialVersionUID = 5428782614293183346L;
+
     private Integer idUser;
     private String email;
     private String nombreUser;
@@ -13,22 +17,6 @@ public class Usuarios {
 
     public Usuarios() {
 
-    }
-
-    public Usuarios(Integer idUser,
-                    String email,
-                    String nombreUser,
-                    String password,
-                    Set<Profesores> alumno,
-                    Set<Profesores> profesor,
-                    boolean isEnabled) {
-        this.idUser = idUser;
-        this.email = email;
-        this.nombreUser = nombreUser;
-        this.password = password;
-        this.alumno = alumno;
-        this.profesor = profesor;
-        this.isEnabled = isEnabled;
     }
 
     public Integer getIdUser() {

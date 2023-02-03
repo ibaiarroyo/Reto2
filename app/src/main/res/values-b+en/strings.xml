@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources><string name="app_name">Apuntes Hub</string>
+
+    <string name="error_communication">Error Comunication</string>
+    <string name="registradocorrectamente">Error Comunication</string>
+
+    <string name="email">Email</string>
+    <string name="Contraseña">Password</string>
+    <string name="recordarSesion">Remember Me</string>
+    <string name="Iniciar">Sign In</string>
+    <string name="Register">Register</string>
+    <string name="cambiarIdioma">Language</string>
+    <string name="buttonForgotPass">Reset Password</string>
+
+
+    <string name="es">Spanish</string>
+    <string name="en">English</string>
+    <string name="eu">Basque</string>
+
+    <string name="EditPass">Change Password</string>
+    <string name="Nombre">Name</string>
+    <string name="Horario">Schedule</string>
+    <string name="Nivel">Level</string>
+    <string name="Profesor">Teacher</string>
+    <string name="Lugar">Place</string>
+    <string name="MateriasAsistidas">Subject Attended:</string>
+    <string name="Salir">Out</string>
+    <string name="Email">Email</string>
+    <string name="RContraseña">Rewrite Password</string>
+    <string name="Cancelar">Cancel</string>
+    <string name="ContraseñaAc">Acutal Password</string>
+    <string name="ContraseñaNu">New Password</string>
+    <string name="RepContraNu">Rewrite new Password</string>
+    <string name="VerMaterias">Subjects List</string>
+    <string name="comerror">Error Comunication</string>
+    <string name="Eliminar_materia">Drop Subject</string>
+    <string name="error">Error!</string>
+    <string name="errorInicioSesion">Error Sign In!</string></resources>
