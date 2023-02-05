@@ -57,7 +57,6 @@ public class Materias extends AppCompatActivity {
 
 
         if (isConnected()) {
-            System.out.println("Has entrado");
             MateriasFacadeGetAll materiasFacadeGetAll = new MateriasFacadeGetAll();
 
             Thread thread = new Thread(materiasFacadeGetAll);
@@ -65,7 +64,6 @@ public class Materias extends AppCompatActivity {
                 thread.start();
                 thread.join(); // Awaiting response from the server...
                 int position = 1;
-                System.out.println("Estas dentro");
 
                     int duartion = Toast.LENGTH_LONG;
 
@@ -73,9 +71,6 @@ public class Materias extends AppCompatActivity {
                     Intent intent = new Intent(Materias.this, Materias.class);
                     startActivity(intent);
                     //startForResult.launch(intent);
-
-
-                    System.out.println("Estas en materiasAll");
 
             } catch (InterruptedException e) {
                 // Nothing to do here...
@@ -85,8 +80,6 @@ public class Materias extends AppCompatActivity {
 
         }
 
-            /*Intent intentaComunity = new Intent(Materias.this, Comunity.class);
-            startActivity(intentaComunity);*/
     }
     public boolean isConnected() {
         boolean ret = false;
