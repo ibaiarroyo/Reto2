@@ -4,7 +4,6 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.net.ConnectivityManager;
@@ -12,7 +11,6 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -99,8 +97,6 @@ public class Login extends AppCompatActivity {
             public void onActivityResult(ActivityResult result) {
 
                 if (result != null && result.getResultCode() == RESULT_OK) {
-
-
                 }
             }
         });
@@ -146,18 +142,15 @@ public class Login extends AppCompatActivity {
                         thread.start();
                         thread.join(); // Awaiting response from the server...
                         int position = 1;
-                        System.out.println("Estas dentro");
                         Logear lista = login.getResponse();
                         if(lista != null){
-                            System.out.println("Entras por la puerta grande primo");
                             int duartion = Toast.LENGTH_LONG;
 
                             Toast toast = Toast.makeText(context, string, duartion);
                             Intent intent = new Intent(Login.this, MenuUsuario.class);
                             startForResult.launch(intent);
-//                          overridePendingTransition(R.anim.zoom_back_in, R.anim.zoom_back_out);
                         } else{
-                            System.out.println("Te dejo entrar por pena pringado");
+                            System.out.println("No has podido ingresar");
                         }
                     } catch (InterruptedException e) {
                                 // Nothing to do here...
@@ -213,7 +206,6 @@ public class Login extends AppCompatActivity {
         botonRegistro.setOnClickListener(view ->{
             Intent intentRegis = new Intent(Login.this, Register.class);
             startActivity(intentRegis);
-
         });
 
         contrasenaOlvidada.setOnClickListener(new View.OnClickListener() {
@@ -221,10 +213,8 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onClick(View view) {
-//                 IntenPass = new Intent();
                 Intent IntenPass = new Intent(Login.this, ResetPass.class);
                 startActivity(IntenPass);
-
             }
         });
 
@@ -239,7 +229,7 @@ public class Login extends AppCompatActivity {
         int id = item.getItemId();
 
         if(id==R.id.compartir){
-            Toast.makeText(this, "Has copiado el correo de contecto en el portapapeles!.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Has copiado el correo de contacto en el portapapeles!.", Toast.LENGTH_SHORT).show();
 
             // obtenemos el texto del textViewM
             String text = textViewM.getText().toString();
