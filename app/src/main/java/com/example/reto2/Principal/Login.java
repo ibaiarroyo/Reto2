@@ -269,7 +269,6 @@ public class Login extends AppCompatActivity {
     }
 
     public String generateSongJson() {
-
         return "{" +
                 "\"email\": \"" + textEmail.getText().toString() + "\", " +
                 "\"password\": \"" + textPasswordLogin.getText().toString()  + "\"" +
