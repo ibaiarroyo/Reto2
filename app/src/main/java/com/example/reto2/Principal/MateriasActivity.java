@@ -10,15 +10,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.reto2.Logear.Logear;
 import com.example.reto2.R;
 import com.example.reto2.adapter.MyTableAdapter;
+import com.example.reto2.beans.Materias;
 import com.example.reto2.network.MateriasFacadeGetAll;
-import com.example.reto2.network.UsuariosFacadeGetAll;
 
 import java.util.ArrayList;
 
-public class Materias extends AppCompatActivity {
+public class MateriasActivity extends AppCompatActivity {
 
     private ArrayList<com.example.reto2.beans.Materias> listado = new ArrayList<>();
     private ListView listaMaterias;
@@ -46,16 +45,17 @@ public class Materias extends AppCompatActivity {
 
         listaMaterias = findViewById(R.id.NomMatTextView);
 
-        MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.layout.materias_layout,listado);
-        listaMaterias.setAdapter(myTableAdapter);
+//        MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.layout.materias_layout,listado);
+//        listaMaterias.setAdapter(myTableAdapter);
 
 
         (findViewById( R.id.buttonVolver)).setOnClickListener( v -> {
-            Intent intentVolver = new Intent(Materias.this, MenuUsuario.class);
+            Intent intentVolver = new Intent(MateriasActivity.this, MenuUsuario.class);
             startActivity(intentVolver);
         });
 
-
+        ArrayList<Materias> listaMaterias = new ArrayList<>();
+        MyTableAdapter myTableAdapter = new MyTableAdapter(this, R.layout.materias_layout,listaMaterias);
         if (isConnected()) {
             MateriasFacadeGetAll materiasFacadeGetAll = new MateriasFacadeGetAll();
 
@@ -68,15 +68,19 @@ public class Materias extends AppCompatActivity {
                     int duartion = Toast.LENGTH_LONG;
 
                     Toast toast = Toast.makeText(this, "HEYYYYY", duartion);
-                    Intent intent = new Intent(Materias.this, Materias.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(Materias.this, Materias.class);
+//                    startActivity(intent);
+
                     //startForResult.launch(intent);
 
             } catch (InterruptedException e) {
                 // Nothing to do here...
             }
+            ArrayList<Materias>  lista = materiasFacadeGetAll.getResponse();
+            listaMaterias.addAll(lista);
+            ((ListView) findViewById(R.id.NomMatTextView)).setAdapter(myTableAdapter);
 
-            listado.addAll(materiasFacadeGetAll.getResponse());
+//            listado.addAll(materiasFacadeGetAll.getResponse());
 
         }
 

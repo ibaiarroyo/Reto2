@@ -21,11 +21,12 @@ public class MyTableAdapter extends ArrayAdapter<Materias> {
     private final ArrayList<Materias> listadoMateria;
     private final Context context;
 
-    public MyTableAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Materias> listadoMateria) {
-        super(context, resource, listadoMateria);
-        this.listadoMateria = listadoMateria;
+    public MyTableAdapter(@NonNull Context context, int resource, @NonNull ArrayList<Materias> listaMateria) {
+        super(context, resource, listaMateria);
+        this.listadoMateria = listaMateria;
         this.context = context;
     }
+
 
     @Override
     public int getCount() {
@@ -39,7 +40,8 @@ public class MyTableAdapter extends ArrayAdapter<Materias> {
 
        // Toast.makeText(context, "AMIGOO MIOOOO", Toast.LENGTH_SHORT).show();
         ((TextView) view.findViewById(R.id.textViewNameLinea)).setText(" "+listadoMateria.get(position).getNombreMateria());
-
+        ((TextView) view.findViewById(R.id.textViewFirstNameLinea)).setText(" "+listadoMateria.get(position).getNombreMateria());
+        ((TextView) view.findViewById(R.id.textViewLastNameLinea)).setText(" "+listadoMateria.get(position).getNombreMateria());
         return view;
     }
 }

@@ -25,7 +25,7 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
     @Override
     public void run() {
 
-        final String theUrl = theBaseUrl + "/materias";
+        final String theUrl = theBaseUrl + "/materias/web";
 
         System.out.println("HEYYYYYYY Qeu miras");
 
@@ -37,6 +37,7 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
 
             // Sending...
             int responseCode = httpURLConnection.getResponseCode();
+            System.out.println(responseCode);
 
             if (responseCode == 418) {
                 // I am not a teapot...
@@ -73,6 +74,7 @@ public class MateriasFacadeGetAll extends NetConfiguration implements Runnable {
                     materia.setNumeroHoras(object.getInt("numeroHoras"));
 
                     this.response.add(materia);
+                    System.out.println(response);
                 }
             }
 

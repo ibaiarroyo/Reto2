@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.reto2.R;
-import com.example.reto2.adapter.MyTableAdapter;
 
 import java.util.ArrayList;
 
@@ -17,7 +16,7 @@ public class MenuUsuario extends AppCompatActivity {
     TextView textViewMat;
     Button cambiopass,verMat;
 
-    private ArrayList<Materias> listado = new ArrayList<>();
+    private ArrayList<MateriasActivity> listado = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +39,7 @@ public class MenuUsuario extends AppCompatActivity {
             */
             /*Intent intentaComunity = new Intent(MenuUsuario.this, Comunity.class);
             startActivity(intentaComunity);*/
-            Intent intentaMaterias = new Intent(MenuUsuario.this, Materias.class);
+            Intent intentaMaterias = new Intent(MenuUsuario.this, MateriasActivity.class);
             startActivity(intentaMaterias);
 
         });
